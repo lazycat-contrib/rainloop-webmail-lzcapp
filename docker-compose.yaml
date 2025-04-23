@@ -1,0 +1,12 @@
+services:
+    rainloop:
+        restart: unless-stopped
+        container_name: rainloop
+        logging:
+            options:
+                max-size: 2m
+        ports:
+            - 80:80
+        volumes:
+            - /root/sync/docker/rainloop/data:/rainloop/data
+        image: amwpfiqvy/rainloop

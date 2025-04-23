@@ -1,0 +1,23 @@
+lzc-sdk-version: "0.1"
+name: rainloop
+package: cloud.lazycat.app.rainloop
+version: 0.17.0
+description: 简洁,现代化&快捷的基于网络的邮件客户端
+homepage: https://hub.docker.com/r/amwpfiqvy/rainloop
+author: amwpfiqvy
+application:
+  subdomain: rainloop
+  background_task: true
+  multi_instance: false
+  gpu_accel: false
+  kvm_accel: false
+  usb_accel: false
+  public_path:
+    - /
+  routes:
+    - /=http://rainloop:80/
+services:
+  rainloop:
+    image: docker.1ms.run/amwpfiqvy/rainloop:latest
+    binds:
+      - /lzcapp/var/data:/rainloop/data
