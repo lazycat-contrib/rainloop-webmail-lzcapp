@@ -9,7 +9,7 @@ application:
       backend: http://rainloop:80/
 services:
   rainloop:
-    # upstream: amwpfiqvy/rainloop:latest
-    image: amwpfiqvy/rainloop:latest
+    # upstream: amwpfiqvy/rainloop:latest@sha256:4bf3162357967cb8406bcfffd573a74937bd1e9ebaa6760a9ff4dfd60f487ac8
+    image: registry.lazycat.cloud/czyt/amwpfiqvy/rainloop:3c41db37a2eefadd
     binds:
       - /lzcapp/var/data:/rainloop/data
