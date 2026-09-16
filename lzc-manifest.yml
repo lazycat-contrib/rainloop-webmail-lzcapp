@@ -1,0 +1,15 @@
+application:
+  subdomain: rainloop
+  background_task: true
+  multi_instance: false
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://rainloop:80/
+services:
+  rainloop:
+    # upstream: amwpfiqvy/rainloop:latest
+    image: amwpfiqvy/rainloop:latest
+    binds:
+      - /lzcapp/var/data:/rainloop/data

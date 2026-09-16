@@ -1,0 +1,42 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: .lazycat-build/rainloop.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: rainloop
+    # 上游只有 mutable latest tag，无法解析版本号 → digest 变化即 patch bump
+    bump: patch
+
+build:
+  run_buildscript: false
+
+images:
+  - id: rainloop
+    target: service
+    service: rainloop
+    source: amwpfiqvy/rainloop
+    channel: custom
+    sort: created
+    tag_regex: '^latest$'
+    delivery:
+      mode: lazycat
+
+stores:
+  official:
+    enabled: true
+    skip_if_version_exists: true
+    changelog_locales: [zh, en]
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: rainloop
+    summary: "简洁、现代、快速的网页邮件客户端"
